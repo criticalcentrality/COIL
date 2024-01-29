@@ -681,7 +681,7 @@ to highlight the model’s fit through the maximum likelihood (ML)
 estimation method with (Model B) and without (Model A) the
 Satorra-Bentler correction for the <span class="math inline">\(\chi^2\)</span> test that yields to robust
 goodness of fit, as follows:</p>
-<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -846,6 +846,43 @@ items that didn’t behave as expected. Let’s see if this is the case.</p>
 ##            0.84484116</code></pre>
 <pre><code>##      srmr 
 ## 0.0382286</code></pre>
+<p>Now, let’s see if the likelihood ratio test for the original model
+(model1) and the reduced version of the model (model2)</p>
+<pre><code>## Model Test User Model:
+##                                                       
+##   Test statistic                               177.636
+##   Degrees of freedom                                87
+##   P-value (Chi-square)                           0.000
+##                                                                     
+##   Browne&#39;s residual-based (ADF) test                                
+##   Test statistic                              -46322922894443856.000
+##   Degrees of freedom                                              87
+##   P-value (Chi-square)                                         1.000</code></pre>
+<pre><code>## Model Test User Model:
+##                                                       
+##   Test statistic                                38.492
+##   Degrees of freedom                                32
+##   P-value (Chi-square)                           0.199
+##                                                       
+##   Browne&#39;s residual-based (ADF) test                  
+##   Test statistic                                94.801
+##   Degrees of freedom                                32
+##   P-value (Chi-square)                           0.000</code></pre>
+<pre><code>## Warning in lavTestLRT(result2, result4): lavaan WARNING: some models are based
+## on a different set of observed variables</code></pre>
+<pre><code>## 
+## Scaled Chi-Squared Difference Test (method = &quot;satorra.bentler.2001&quot;)
+## 
+## lavaan NOTE:
+##     The &quot;Chisq&quot; column contains standard test statistics, not the
+##     robust test that should be reported per model. A robust difference
+##     test is a function of two standard (not robust) statistics.
+##  
+##         Df    AIC    BIC   Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+## result4 32 1355.4 1427.2  38.492                                  
+## result2 87 2289.3 2393.7 177.636     140.72      55  1.892e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>At this moment, a practitioner might be tempted to claim that this
 model proved to be satisfactory from a statistical viewpoint, given its
 following results:</p>
