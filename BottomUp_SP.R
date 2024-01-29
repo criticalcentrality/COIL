@@ -24,7 +24,7 @@ model<-"
    SP4~1;
    SP5~1;
 ";
-result1 <- lavaan(model, data=modelData, fixed.x=FALSE, estimator="ML", std.ov=TRUE);
+result1 <- lavaan(model, data=modelData, estimator="ML", std.ov=TRUE);
 summary(result, fit.measures=TRUE);
 
 result2<-lavaan(model, data=modelData, fixed.x=FALSE, estimator="MLM", std.ov = TRUE);
@@ -34,7 +34,6 @@ lavTest(result1, test = "browne.residual.adf", output = "text")
 lavTest(result2, test = "browne.residual.adf", output = "text")
 
 
-
 library(dynamic)
 estimated.model <- "SP =~ .855*SP1 + .079*SP2 + .723 *SP3 + .923 *SP4 + .715 *SP5"
-cfaOne(model=estimated.model,n=65,manual=TRUE)
+cfaOne(model=estimated.model,n=65,manual=TRUE, reps = 100)
