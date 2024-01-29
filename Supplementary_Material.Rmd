@@ -155,6 +155,8 @@ tbl
 
 Neither the results for Model A or Model B proved to be satisfactory, despite the higher values for the estimated parameters for the factor loadings of items and covariance between the theoretical dimensions of collaboration. Both CFI and TLI are below the acceptable threshold of 0.9 to claim that the model reveals a good fit. Likewise, both RMSEA and SRMR show acceptable values that exceeded the recommended thresholds (RMSEA $\leq$ 0.05 and SRMR $\leq$ 0.08). Interested readers can consult the article of Hu and Bentler (1999) to dive deep into the rationality of these rules of thumb.  
 
+
+
 ## Searching the cause of misfit
 
 The above model shows a poor fit despite its estimates with high magnitudes and statistical significance. The co-existence of these two aspects of the model raises concerns about the structure of the model itself. 
@@ -244,6 +246,14 @@ fit2$fit[29:33]
 fit2$fit[37:40]
 fit2$fit[42:45]
 fit2$fit[47]
+```
+
+Now, let's see if the likelihood ratio test for the original model (model1) and the reduced version of the model (model2)
+
+```{r}
+lavTest(result2, test = "browne.residual.adf", output = "text")
+lavTest(result4, test = "browne.residual.adf", output = "text")
+lavTestLRT(result2, result4)
 ```
 
 
