@@ -34,6 +34,8 @@ summary(result2, fit.measures=TRUE);
 lavTest(result1, test = "browne.residual.adf", output = "text")
 lavTest(result2, test = "browne.residual.adf", output = "text")
 
+pave <- lavTest(result1, test = "browne.residual.adf", output = "text")
+pave$browne.residual.adf[2]
 
 library(dynamic)
 estimated.model <- "SP =~ .855*SP1 + .079*SP2 + .723 *SP3 + .923 *SP4 + .715 *SP5"
