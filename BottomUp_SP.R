@@ -26,7 +26,7 @@ model<-"
    SP5~1;
 ";
 result1 <- lavaan(model, data=modelData, estimator="ML", std.ov=TRUE);
-summary(result, fit.measures=TRUE);
+summary(result1, fit.measures=TRUE);
 
 result2<-lavaan(model, data=modelData, fixed.x=FALSE, estimator="MLM", std.ov = TRUE);
 summary(result2, fit.measures=TRUE);
@@ -40,6 +40,54 @@ pave$browne.residual.adf[2]
 library(dynamic)
 estimated.model <- "SP =~ .855*SP1 + .079*SP2 + .723 *SP3 + .923 *SP4 + .715 *SP5"
 cfaOne(model=estimated.model,n=65,manual=TRUE, reps = 100)
+
+library(MIIVsem)
+miivs(model)
+model1_miiv <- miive(model = model, data = coildata, sarg.adjust = "holm")
+Model1_miiv <- estimatesTable(model1_miiv)
+
+model1_fit <- sem(model = model, data = coildata, meanstructure = TRUE)
+model1_params <- parameterEstimates(model1_fit) 
+write.csv(model1_params, "model1_params.csv")
+
+ML.lhs <- model1_params$lhs
+ML.rhs <- model1_params$rhs
+ML.es <- model1_params$est 
+ML.se <- model1_params$se
+ML.p <- model1_params$pvalue
+lava1 <- data.frame(ML.lhs, ML.rhs, ML.es, ML.se, ML.p)
+colnames(lava1)[1] <- "lhs"
+colnames(lava1)[2] <- "rhs"
+
+MIIVE.lhs <- Model1_miiv$lhs
+MIIVE.rhs <- Model1_miiv$rhs
+MIIVE.es <- Model1_miiv$est
+MIIVE.se <- Model1_miiv$se
+MIIVE.p <- Model1_miiv$pvalue
+miiv1 <- data.frame(MIIVE.lhs, MIIVE.rhs, MIIVE.es, MIIVE.se, MIIVE.p)
+colnames(miiv1)[1] <- "lhs"
+colnames(miiv1)[2] <- "rhs"
+
+## merge lava1 and miiv1
+MethodsComparison <- merge(lava1, miiv1, by = c("lhs", "rhs"), all.x = TRUE, all.y = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Especification for Credibility Dimension
 
