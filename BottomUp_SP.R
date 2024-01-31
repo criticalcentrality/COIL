@@ -48,7 +48,7 @@ Model1_miiv <- estimatesTable(model1_miiv)
 
 model1_fit <- sem(model = model, data = coildata, meanstructure = TRUE)
 model1_params <- parameterEstimates(model1_fit) 
-write.csv(model1_params, "model1_params.csv")
+
 
 ML.lhs <- model1_params$lhs
 ML.rhs <- model1_params$rhs
